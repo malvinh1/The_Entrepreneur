@@ -18,7 +18,7 @@ export default function AuthCard(props: Props) {
 
     const styles=StyleSheet.create({
         outer:{
-            marginHorizontal: 16,
+            margin: 16,
             backgroundColor: WHITE,
             padding: 32,
             width: width-32,

@@ -3,7 +3,7 @@ import { StyleSheet, ViewStyle, StyleProp, View } from 'react-native';
 
 import { Card } from 'react-native-elements';
 
-import { WHITE } from '../../constants/color';
+import { WHITE } from '../constants/color';
 import Texts from '../core-ui/Text';
 import Button from '../core-ui/Button';
 

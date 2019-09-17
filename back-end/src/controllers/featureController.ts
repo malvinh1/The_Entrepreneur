@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import userModel from '../models/userModel';
 import eventModel from '../models/eventModel';
+import forumsModel from '../models/forumsModel';
 import { ResponseObject } from '../types';
 import { SERVER_OK, SERVER_BAD_REQUEST } from '../constants';
 import { dataUri } from '../helpers';
@@ -83,7 +84,7 @@ async function createEvent(req: Request, res: Response) {
 
     let user = await userModel.getUserData(decoded);
 
-    if (user.data.user_role === 'User') {
+    if (user.data.user_role !== 'Admin') {
       res.status(SERVER_OK).json({
         success: false,
         data: {},
@@ -130,4 +131,77 @@ async function createEvent(req: Request, res: Response) {
   }
 }
 
-export default { editProfile, createEvent };
+async function getEvent(req: Request, res: Response) {
+  try {
+    let { id } = req.params;
+
+    let result = await eventModel.getEventById(id);
+
+    if (result.success) {
+      res.status(SERVER_OK).json(result);
+    } else {
+      res.status(SERVER_BAD_REQUEST).json(result);
+    }
+  } catch (e) {
+    res.status(SERVER_BAD_REQUEST).json(String(e));
+  }
+}
+
+async function createForum(req: Request, res: Response) {
+  try {
+    let decoded = (<any>req).decoded;
+    let {
+      forum_name,
+      category,
+      date,
+      description,
+      image,
+      likes,
+    } = req.body;
+
+    let user = await userModel.getUserData(decoded);
+
+    if (user.data.user_role !== 'Admin') {
+      res.status(SERVER_OK).json({
+        success: false,
+        data: {},
+        message: 'Only admin can create an event',
+      });
+      return;
+    }
+
+    if (
+      !forum_name ||
+      !category ||
+      !description
+    ) {
+      res.status(SERVER_OK).json({
+        success: false,
+        data: {},
+        message: 'Please fill all required fields',
+      });
+      return;
+    }
+
+    image = image ? image : null;
+
+    let result = await forumsModel.newForum({
+      forum_name,
+      category,
+      date,
+      description,
+      image,
+      likes,
+    });
+
+    if (result.success) {
+      res.status(SERVER_OK).json(result);
+    } else {
+      res.status(SERVER_BAD_REQUEST).json(result);
+    }
+  } catch (e) {
+    res.status(SERVER_BAD_REQUEST).json(String(e));
+  }
+}
+
+export default { editProfile, createEvent, getEvent, createForum };

@@ -6,6 +6,5 @@ const pageRouter = Router();
 
 pageRouter.get('/profile', pageController.profile);
 pageRouter.get('/home', pageController.home);
-pageRouter.get('/forums', pageController.forums);
 
 export default pageRouter;

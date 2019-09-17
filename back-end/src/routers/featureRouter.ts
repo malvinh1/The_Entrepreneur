@@ -17,4 +17,12 @@ featureRouter.post(
   featureController.createEvent,
 );
 
+featureRouter.get('/get-event/:id', featureController.getEvent);
+
+featureRouter.post(
+  '/create-forum',
+  middleware.multerUploads,
+  featureController.createForum,
+);
+
 export default featureRouter;

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { SERVER_OK, SERVER_BAD_REQUEST } from '../constants';
 import userModel from '../models/userModel';
-// import forumsModel from '../models/forumsModel';
+import eventModel from '../models/eventModel';
 
 async function profile(req: Request, res: Response) {
   try {
@@ -22,20 +22,29 @@ async function profile(req: Request, res: Response) {
 
 async function home(req: Request, res: Response) {
   try {
-    res.status(SERVER_OK).json({ message: 'OK' });
-    return;
+    let decoded = (<any>req).decoded;
+
+    let userResult = await userModel.getUserData(decoded);
+    let eventResult = await eventModel.getEvent();
+
+    if (userResult.success && eventResult.success) {
+      res.status(SERVER_OK).json({
+        success: true,
+        data: {
+          user: userResult.data,
+          events: eventResult.data.event,
+        },
+      });
+    } else {
+      res.status(SERVER_BAD_REQUEST).json({
+        success: false,
+        data: {},
+        message: userResult.message + eventResult.message,
+      });
+    }
   } catch (e) {
     return { success: false, data: {}, message: String(e) };
   }
 }
 
-async function forums(req: Request, res: Response) {
-  console.log("FORUMS");
-  try {
-
-  } catch (e) {
-    return { success: false, data: {}, message: String(e) };
-  }
-}
-
-export default { profile, home, forums };
+export default { profile, home };

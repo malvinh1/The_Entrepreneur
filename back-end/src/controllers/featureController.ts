@@ -153,28 +153,25 @@ async function createForum(req: Request, res: Response) {
     let {
       forum_name,
       category,
-      date,
       description,
       image,
-      likes,
     } = req.body;
 
     let user = await userModel.getUserData(decoded);
+
+    let id_user = user.data.id;
+    console.log("ID User : " + id_user);
 
     if (user.data.user_role !== 'Admin') {
       res.status(SERVER_OK).json({
         success: false,
         data: {},
-        message: 'Only admin can create an event',
+        message: 'Only admin can create a forum',
       });
       return;
     }
 
-    if (
-      !forum_name ||
-      !category ||
-      !description
-    ) {
+    if (!forum_name || !category || !description) {
       res.status(SERVER_OK).json({
         success: false,
         data: {},
@@ -186,12 +183,11 @@ async function createForum(req: Request, res: Response) {
     image = image ? image : null;
 
     let result = await forumsModel.newForum({
+      id_user,
       forum_name,
       category,
-      date,
       description,
       image,
-      likes,
     });
 
     if (result.success) {

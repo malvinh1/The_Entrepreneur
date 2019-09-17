@@ -7,25 +7,23 @@ async function newForum(forumObject: CreateForum) {
     let db = await getDB();
 
     let {
+        id_user,
         forum_name,
         category,
-        date,
         description,
         image,
-        likes,
     } = forumObject;
 
     let values = [
+        id_user,
         forum_name,
         category,
-        date,
         description,
         image,
-        likes,
     ];
 
     let result: QueryResult = await db.query(
-        'INSERT INTO forums (forum_name, category, date, description, image, likes) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+        'INSERT INTO forums (id_user, forum_name, category, description, image) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         values,
     );
 
@@ -35,9 +33,11 @@ async function newForum(forumObject: CreateForum) {
         success: true,
         data: {
             id: forum.id,
-            event_name: forum.forum_name,
+            id_user: forum.id_user,
+            cdate: forum.cdate,
+            udate: forum.udate,
+            forum_name: forum.forum_name,
             category: forum.category,
-            date: forum.date,
             description: forum.description,
             image: forum.image,
             likes: forum.likes,

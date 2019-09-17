@@ -64,10 +64,9 @@ export type event = {
 };
 
 export type CreateForum = {
+  id_user:string;
   forum_name: string;
   category: 'Umum' | 'Jual' | 'Beli';
-  date?: string | null;
   description: string;
   image?: string[] | null;
-  likes?: number | null;
 };

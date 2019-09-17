@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import { SERVER_OK, SERVER_BAD_REQUEST } from '../constants';
 import userModel from '../models/userModel';
+// import forumsModel from '../models/forumsModel';
 
 async function profile(req: Request, res: Response) {
   try {
@@ -28,4 +29,13 @@ async function home(req: Request, res: Response) {
   }
 }
 
-export default { profile, home };
+async function forums(req: Request, res: Response) {
+  console.log("FORUMS");
+  try {
+
+  } catch (e) {
+    return { success: false, data: {}, message: String(e) };
+  }
+}
+
+export default { profile, home, forums };

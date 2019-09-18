@@ -9,7 +9,7 @@ type Props = {
   dateTransaction: ReactNode;
   status: ReactNode;
   mode1: 'membership' | 'event';
-  mode2: 'red' | 'green';
+  mode2: 'red' | 'green' | 'black';
 };
 
 export default function TransactionCard(prop: Props) {
@@ -36,7 +36,7 @@ export default function TransactionCard(prop: Props) {
   });
   return (
     <View style={styles.containerStyle}>
-      {mode1 == 'membership' ? (
+      {mode1 === 'membership' ? (
         <Icon name="membership"></Icon>
       ) : (
         <Icon name="eventlogo"></Icon>
@@ -46,7 +46,7 @@ export default function TransactionCard(prop: Props) {
         <View style={styles.spacing}></View>
         <Texts type="display1">{dateTransaction}</Texts>
         <View style={styles.spacing}></View>
-        {mode2 == 'red' ? (
+        {mode2 === 'red' ? (
           <Texts color="red" type="display1">
             Status: {status}
           </Texts>

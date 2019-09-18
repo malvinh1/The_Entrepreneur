@@ -140,10 +140,6 @@ const ICONS = {
     true: cart,
     false: cartGray,
   },
-  eventlogo: {
-    true: eventlogo,
-    false: eventlogo,
-  },
   event1: {
     true: event1,
     false: event1,
@@ -159,6 +155,10 @@ const ICONS = {
   eventBig: {
     true: eventBig,
     false: eventBig,
+  },
+  eventlogo: {
+    true: eventlogo,
+    false: eventlogo,
   },
 };
 

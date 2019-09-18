@@ -45,6 +45,7 @@ import cart from '../../assets/images/cart.png';
 import cartGray from '../../assets/images/cartGray.png';
 
 // Images
+import eventlogo from '../../assets/images/event.png';
 import event1 from '../../assets/images/event1.png';
 import event2 from '../../assets/images/event2.png';
 import event3 from '../../assets/images/event3.png';
@@ -138,6 +139,10 @@ const ICONS = {
   cart: {
     true: cart,
     false: cartGray,
+  },
+  eventlogo: {
+    true: eventlogo,
+    false: eventlogo,
   },
   event1: {
     true: event1,

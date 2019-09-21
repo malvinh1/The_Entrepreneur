@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import userModel from '../models/userModel';
 import eventModel from '../models/eventModel';
-import forumsModel from '../models/forumsModel';
+import forumModel from '../models/forumModel';
 import { ResponseObject } from '../types';
 import { SERVER_OK, SERVER_BAD_REQUEST } from '../constants';
 import { dataUri } from '../helpers';
@@ -321,7 +321,7 @@ async function createForum(req: Request, res: Response) {
 
     image = image ? image : null;
 
-    let result = await forumsModel.newForum({
+    let result = await forumModel.newForum({
       id_user,
       forum_name,
       category,
@@ -339,4 +339,4 @@ async function createForum(req: Request, res: Response) {
   }
 }
 
-export default { editProfile, createEvent, getEvent, createForum, updateEvent, deleteEvent };
+export default { editProfile, createEvent, getEvent, updateEvent, deleteEvent, createForum };

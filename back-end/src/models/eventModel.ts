@@ -1,7 +1,8 @@
 import { QueryResult } from 'pg';
+import moment from 'moment';
 
 import { getDB } from '../db';
-import { CreateEvent } from '../types';
+import { CreateEvent, ReqEditEventObject } from '../types';
 
 async function newEvent(eventObject: CreateEvent) {
   try {
@@ -10,6 +11,7 @@ async function newEvent(eventObject: CreateEvent) {
     let {
       event_name,
       category,
+      event_date,
       place,
       price,
       description,
@@ -20,6 +22,7 @@ async function newEvent(eventObject: CreateEvent) {
     let values = [
       event_name,
       category,
+      event_date,
       place,
       price,
       description,
@@ -28,7 +31,7 @@ async function newEvent(eventObject: CreateEvent) {
     ];
 
     let result: QueryResult = await db.query(
-      'INSERT INTO events (event_name, category, place, price, description, available_seat, image) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      'INSERT INTO events (event_name, category, event_date, place, price, description, available_seat, image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
       values,
     );
 
@@ -40,6 +43,7 @@ async function newEvent(eventObject: CreateEvent) {
         id: event.id,
         event_name: event.event_name,
         category: event.category,
+        event_date: event.event_date,
         place: event.place,
         price: event.price,
         description: event.description,
@@ -98,6 +102,7 @@ async function getEventById(id: string) {
         id: event.id,
         event_name: event.event_name,
         category: event.category,
+        event_date: event.event_date,
         place: event.place,
         price: event.price,
         description: event.description,
@@ -115,4 +120,69 @@ async function getEventById(id: string) {
   }
 }
 
-export default { newEvent, getEvent, getEventById };
+async function editEvent(eventObject: ReqEditEventObject, id) {
+  try {
+    let {
+      event_name,
+      category,
+      event_date,
+      place,
+      price,
+      description,
+      available_seat,
+      image,
+    } = eventObject;
+    let db = await getDB();
+
+    await db.query(
+      'UPDATE events SET event_name=$1, category=$2, event_date=$3, place=$4, price=$5, description=$6, available_seat=$7, image=$8 WHERE id=$9',
+      [
+        event_name,
+        category,
+        event_date,
+        place,
+        price,
+        description,
+        available_seat,
+        image,
+        id,
+      ],
+    );
+
+    let result = await getEventById(id);
+
+    return {
+      success: true,
+      data: result.data,
+      message: 'Event has been updated',
+    };
+  } catch (e) {
+    return {
+      success: false,
+      data: {},
+      message: String(e),
+    };
+  }
+}
+
+async function deleteEvent(id: string) {
+  try {
+    let db = await getDB();
+
+    await db.query('DELETE FROM events where id=$1', [id]);
+
+    return {
+      success: true,
+      data: {},
+      message: 'Successfully delete event',
+    };
+  } catch (e) {
+    return {
+      success: false,
+      data: {},
+      message: String(e),
+    };
+  }
+}
+
+export default { newEvent, getEvent, getEventById, editEvent, deleteEvent };

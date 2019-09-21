@@ -18,6 +18,12 @@ featureRouter.post(
 );
 
 featureRouter.get('/get-event/:id', featureController.getEvent);
+featureRouter.post(
+  '/update-event/:id',
+  middleware.multerUploads,
+  featureController.updateEvent,
+);
+featureRouter.get('/delete-event/:id', featureController.deleteEvent);
 
 featureRouter.post(
   '/create-forum',

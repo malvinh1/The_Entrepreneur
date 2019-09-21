@@ -299,7 +299,6 @@ async function createForum(req: Request, res: Response) {
     let user = await userModel.getUserData(decoded);
 
     let id_user = user.data.id;
-    console.log("ID User : " + id_user);
 
     if (user.data.user_role !== 'Admin') {
       res.status(SERVER_OK).json({

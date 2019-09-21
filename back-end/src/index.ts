@@ -15,7 +15,6 @@ async function serverSetup() {
 
   app.locals.db = await getDB();
 
-  // query to make a function to automatically add date everytime insert a data to db
   await app.locals.db.query(
     'CREATE OR REPLACE FUNCTION trigger_set_timestamp() \
     RETURNS TRIGGER AS $$ \
@@ -57,7 +56,6 @@ async function serverSetup() {
     (error: Error, results: QueryResult) => { },
   );
 
-  //trigger for update date on table forums
   await app.locals.db.query(
     'CREATE TRIGGER set_timestamp \
     BEFORE UPDATE ON forums \
@@ -66,7 +64,6 @@ async function serverSetup() {
     (error: Error, results: QueryResult) => { },
   );
 
-  //trigger for update date on table comments
   await app.locals.db.query(
     'CREATE TRIGGER set_timestamp \
     BEFORE UPDATE ON comments \

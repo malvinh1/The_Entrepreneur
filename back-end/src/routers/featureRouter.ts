@@ -18,6 +18,7 @@ featureRouter.post(
 );
 
 featureRouter.get('/get-event/:id', featureController.getEvent);
+
 featureRouter.post(
   '/update-event/:id',
   middleware.multerUploads,

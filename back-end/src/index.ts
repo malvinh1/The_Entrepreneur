@@ -16,17 +16,6 @@ async function serverSetup() {
   app.locals.db = await getDB();
 
   await app.locals.db.query(
-    'CREATE OR REPLACE FUNCTION trigger_set_timestamp() \
-    RETURNS TRIGGER AS $$ \
-    BEGIN \
-      NEW.updated_at = NOW(); \
-      RETURN NEW; \
-    END; \
-    $$ LANGUAGE plpgsql',
-    (error: Error, results: QueryResult) => { },
-  );
-
-  await app.locals.db.query(
     'create table users(ID SERIAL PRIMARY KEY, email varchar(80) UNIQUE, user_role varchar(50), first_name varchar(50), last_name varchar(50), password text, avatar varchar(100), membership varchar(50), gender varchar(50))',
     (error: Error, results: QueryResult) => { },
   );
@@ -57,23 +46,7 @@ async function serverSetup() {
   );
 
   await app.locals.db.query(
-    'CREATE TRIGGER set_timestamp \
-    BEFORE UPDATE ON forums \
-    FOR EACH ROW \
-    EXECUTE PROCEDURE trigger_set_timestamp()',
-    (error: Error, results: QueryResult) => { },
-  );
-
-  await app.locals.db.query(
     'create table tickets(ID SERIAL, ID_event SERIAL REFERENCES events(ID), ID_user SERIAL REFERENCES users(ID), type varchar(50), total int, PRIMARY KEY(ID, ID_event, ID_user))',
-    (error: Error, results: QueryResult) => { },
-  );
-
-  await app.locals.db.query(
-    'CREATE TRIGGER set_timestamp \
-    BEFORE UPDATE ON comments \
-    FOR EACH ROW \
-    EXECUTE PROCEDURE trigger_set_timestamp()',
     (error: Error, results: QueryResult) => { },
   );
 

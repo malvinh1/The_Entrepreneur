@@ -370,6 +370,10 @@ async function getForumCategory(req: Request, res: Response) {
   }
 }
 
+async function updateForum(req: Request, res: Response) {
+
+}
+
 async function deleteForum(req: Request, res: Response) {
   try {
     let decoded = (<any>req).decoded;
@@ -398,4 +402,4 @@ async function deleteForum(req: Request, res: Response) {
   }
 }
 
-export default { editProfile, createEvent, getEvent, updateEvent, deleteEvent, createForum, getForum, getForumCategory, deleteForum };
+export default { editProfile, createEvent, getEvent, updateEvent, deleteEvent, createForum, getForum, getForumCategory, updateForum, deleteForum };

@@ -37,6 +37,12 @@ featureRouter.get('/get-forum-category/:category', featureController.getForumCat
 
 featureRouter.get('/get-forum/:id', featureController.getForum);
 
+featureRouter.post(
+  '/update-forum/:id',
+  middleware.multerUploads,
+  featureController.updateForum,
+);
+
 featureRouter.get('/delete-forum/:id', featureController.deleteForum);
 
 export default featureRouter;

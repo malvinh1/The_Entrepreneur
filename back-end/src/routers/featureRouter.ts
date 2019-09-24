@@ -24,6 +24,7 @@ featureRouter.post(
   middleware.multerUploads,
   featureController.updateEvent,
 );
+
 featureRouter.get('/delete-event/:id', featureController.deleteEvent);
 
 featureRouter.post(
@@ -31,5 +32,11 @@ featureRouter.post(
   middleware.multerUploads,
   featureController.createForum,
 );
+
+featureRouter.get('/get-forum-category/:category', featureController.getForumCategory);
+
+featureRouter.get('/get-forum/:id', featureController.getForum);
+
+featureRouter.get('/delete-forum/:id', featureController.deleteForum);
 
 export default featureRouter;

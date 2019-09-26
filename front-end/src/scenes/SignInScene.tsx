@@ -6,7 +6,6 @@ import {KeyboardAvoidingView} from 'react-native';
 import {NavigationScreenProps} from 'react-navigation';
 import { k16 } from '../constants/dimens';
 import LoginController from '../controller/LoginController';
-import Text from '../core-ui/Text'
 
 type Props = NavigationScreenProps
 type State={}
@@ -20,7 +19,11 @@ export default class SignInScene extends Component<Props, State> {
   }
 
   signInAction = ()=>{
-    this.loginController.makeLogin();
+    console.log(this.loginController.makeLogin());
+    if(this.loginController.makeLogin()){
+      alert("Logging successful!")
+      this.props.navigation.navigate('Home')
+    }
   };
 
   forgotPasswordAction = ()=>{
@@ -41,28 +44,11 @@ export default class SignInScene extends Component<Props, State> {
               forgotPasswordAction={this.forgotPasswordAction}
               mode="singin"></AuthCard>
             </LinearGradient>
-            {
-              CustomProgressBar(this.loginController.isProcessing)
-            }
         </KeyboardAvoidingView>
       </View>
     );
   }
 }
-
-function CustomProgressBar(visible: boolean){
-  console.log("calling");
-  return(
-    <Modal onRequestClose={() => null} visible={visible}>
-    <View style={{ flex: 1, backgroundColor: '#dcdcdc', alignItems: 'center', justifyContent: 'center' }}>
-      <View style={{ borderRadius: 10, backgroundColor: 'white', padding: 25 }}>
-        <Text type="display1">Loading</Text>
-        <ActivityIndicator size="large" />
-      </View>
-    </View>
-  </Modal>
-  )
-};
 
 const styles = StyleSheet.create({
   view: {

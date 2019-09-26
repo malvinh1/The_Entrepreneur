@@ -1,4 +1,5 @@
 export class UserModel{
+    success: boolean
     id: number
     email: string
     user_role: 'User' | 'Admin'
@@ -9,6 +10,7 @@ export class UserModel{
     gender: 'Male' | 'female' | 'Other'
     token: string
     constructor(){
+        this.success=false;
         this.id=0
         this.email=''
         this.user_role="User"

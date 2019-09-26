@@ -6,21 +6,18 @@ export default class LoginController{
     private authService: AuthService
     user: UserModel;
     authModel: AuthModel;
-    isProcessing: boolean;
 
     constructor(){
-        this.isProcessing=false;
         this.authModel=new AuthModel();
         this.authService = new AuthService()
         this.user = new UserModel();
     }
     
-    makeLogin=async ()=>{
-        this.isProcessing=true;
+    makeLogin=async()=>{
         console.log(this.authModel)
         this.user.set(await this.authService.doLogin(this.authModel))
-        console.log(this.user);
-        this.isProcessing=false;
+        console.log(this.user)
+        return this.user.success
     }
     
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import AuthCard from '../component/authCard';
 import { LinearGradient } from 'expo-linear-gradient';
 import {KeyboardAvoidingView} from 'react-native';
@@ -18,11 +18,13 @@ export default class SignInScene extends Component<Props, State> {
     this.loginController = new LoginController();
   }
 
-  signInAction = ()=>{
-    console.log(this.loginController.makeLogin());
-    if(this.loginController.makeLogin()){
-      alert("Logging successful!")
+  signInAction =async()=>{
+    var success = await this.loginController.makeLogin()
+    if(success){
+      alert("Login successfull!")
       this.props.navigation.navigate('Home')
+    }else{
+      alert("Login fails, please check your login combinations!")
     }
   };
 

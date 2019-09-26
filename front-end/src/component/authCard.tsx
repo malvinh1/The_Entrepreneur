@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Text from '../core-ui/Text';
 import {View, StyleSheet} from 'react-native';
 import { WHITE } from '../constants/color';

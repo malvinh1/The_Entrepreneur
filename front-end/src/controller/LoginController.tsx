@@ -14,9 +14,7 @@ export default class LoginController{
     }
     
     makeLogin=async()=>{
-        console.log(this.authModel)
-        this.user.set(await this.authService.doLogin(this.authModel))
-        console.log(this.user)
+        this.user = await this.authService.doLogin(this.authModel)
         return this.user.success
     }
     

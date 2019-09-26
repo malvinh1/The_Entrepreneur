@@ -55,8 +55,4 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     opacity: 0.4,
   },
-<<<<<<< Updated upstream
 });
-=======
-});
->>>>>>> Stashed changes

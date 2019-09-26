@@ -41,7 +41,7 @@ export default class SignInScene extends Component<Props, State> {
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}>
               <AuthCard 
-              data={this.loginController.authModel}
+              authModel={this.loginController.authModel}
               signInAction={this.signInAction}
               forgotPasswordAction={this.forgotPasswordAction}
               mode="singin"></AuthCard>

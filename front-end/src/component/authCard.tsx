@@ -9,7 +9,7 @@ import { VerticalSpacer3 } from '../core-ui/Spacer';
 import { AuthModel } from '../model/Auth';
 
 type Props = {
-    data:AuthModel
+    authModel: AuthModel
     signInAction: ()=>void;
     forgotPasswordAction: ()=>void;
     mode: 'singin'|'signup';
@@ -17,7 +17,7 @@ type Props = {
 
 export default function AuthCard(props: Props){
 
-    let { mode, signInAction, forgotPasswordAction, data} = props;
+    let { mode, signInAction, forgotPasswordAction, authModel} = props;
 
     const styles=StyleSheet.create({
         outer:{
@@ -50,13 +50,13 @@ export default function AuthCard(props: Props){
             <TextInput label="Email" placeholder="Type your email"
             containerStyle={styles.form} labelStyle={styles.label}
             onChangeText={(text)=>{
-                data.username=text
-                data.email = text
+                authModel.username=text
+                authModel.email = text
                 }}/>
             <VerticalSpacer3/>
             <TextInput label="Password" placeholder="Type your password" isEncrypt={true}
             containerStyle={styles.form} labelStyle={styles.label}
-            onChangeText={(text)=>{data.password = text}}/>
+            onChangeText={(text)=>{authModel.password = text}}/>
             <VerticalSpacer3/>
             {
                 mode == 'signup' ?  <TextInput label="Repeat Password" isEncrypt={true} placeholder="Type your password again" containerStyle={styles.form} labelStyle={styles.label} onChangeText={()=>{}}/> :

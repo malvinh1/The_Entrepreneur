@@ -5,16 +5,25 @@ import { LinearGradient } from 'expo-linear-gradient';
 import {KeyboardAvoidingView} from 'react-native';
 import {NavigationScreenProps} from 'react-navigation';
 import { k16 } from '../constants/dimens';
+import LoginController from '../controller/LoginController';
 
 type Props = NavigationScreenProps
 type State = {}
 
 export default class SignInScene extends Component<Props, State> {
+  private loginController: LoginController;
+
+  constructor(props: Props){
+    super(props);
+    this.loginController = new LoginController();
+  }
+
   signInAction = ()=>{
     this.props.navigation.navigate('Main')
   };
-  forgotPasswordAction = ()=>{
 
+  forgotPasswordAction = ()=>{
+    this.loginController.makeLogin();
   };
 
   render() {

@@ -1,22 +1,96 @@
-import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, Text, } from 'react-native';
-import { navigationOption } from '../component/NavBar';
+import React from 'react';
+import { StyleSheet, Text, View, } from 'react-native';
+import { createMaterialTopTabNavigator, createAppContainer, ScrollView } from 'react-navigation';
+import { headerBarColor, WHITE } from '../constants/color';
+import Icon from '../core-ui/Icon';
+import TransactionCard from '../component/TransactionCard';
 
-
-type Props = {};
-type State = {};
-
-export default class TransactionScene extends Component<Props, State>{
-    static navigationOptions= navigationOption("Transaction");
-
+class OngoingScreen extends React.Component {
     render() {
-        return (
-            <SafeAreaView style={styles.view}>
-                  <Text>Transaction Scene</Text>
-            </SafeAreaView>
-        );
-      }
+      return (
+        <ScrollView>
+          <TransactionCard 
+          key="1"
+          dateTransaction="12/2/2019"
+          mode1="event"
+          mode2="black"
+          status="Hello"
+          transactionTitle="Hello Title"
+          ></TransactionCard>
+          <TransactionCard 
+          key="1"
+          dateTransaction="12/2/2019"
+          mode1="event"
+          mode2="black"
+          status="Hello"
+          transactionTitle="Hello Title"
+          ></TransactionCard>
+          <TransactionCard 
+          key="1"
+          dateTransaction="12/2/2019"
+          mode1="event"
+          mode2="black"
+          status="Hello"
+          transactionTitle="Hello Title"
+          ></TransactionCard>
+          <TransactionCard 
+          key="1"
+          dateTransaction="12/2/2019"
+          mode1="event"
+          mode2="black"
+          status="Hello"
+          transactionTitle="Hello Title"
+          ></TransactionCard>
+        </ScrollView>
+      );
+    }
+  }
+  
+class HistoryScreen extends React.Component {
+    render() {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Settings!</Text>
+        </View>
+      );
+    }
 }
+  
+const TransactionTab = createMaterialTopTabNavigator({
+    Ongoing: OngoingScreen,
+    History: HistoryScreen,
+},{
+  tabBarOptions:{
+    style:{
+      backgroundColor: headerBarColor,
+    },
+    indicatorStyle:{
+      backgroundColor: WHITE
+    }
+  },
+  navigationOptions:{
+    title: "Transaction",
+    headerStyle: {
+        backgroundColor: headerBarColor,
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerLeft:(
+          <View style={{paddingLeft: 16}}>
+               <Icon name="logo"/>
+          </View>
+      ),
+      headerRight:(
+          <View style={{paddingRight: 16}}>
+              <Icon name="qr"/>
+          </View>
+      )
+}
+})
+
+export default createAppContainer(TransactionTab);
 
 const styles = StyleSheet.create({
     view:{

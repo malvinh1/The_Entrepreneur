@@ -11,7 +11,7 @@ import { k16 } from '../constants/dimens';
 import {NavigationScreenProps} from 'react-navigation';
 
 import PromotionCard from '../component/PromotionCard';
-import HistoryCard from '../component/HistoryCard';
+import HistoryCard from '../component/TransactionHistoryCard';
 
 type Props = NavigationScreenProps;
 
@@ -87,8 +87,8 @@ export default class HomeScene extends Component<Props, State>{
                     </View>
                     <VerticalSpacer3/>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <PromotionCard style={styles.promotion}/>
-                        <PromotionCard style={styles.promotion}/>
+                        <PromotionCard/>
+                        <PromotionCard/>
                     </ScrollView>
                     <VerticalSpacer3/>
                     <Text type="headline" children="Event Terdekat"></Text>

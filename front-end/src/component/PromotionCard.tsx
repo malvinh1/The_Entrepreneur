@@ -5,7 +5,7 @@ import { screenWidth, k16 } from '../constants/dimens';
 
 type Props={
     imgUrl?: String;
-    newStyle: StyleProp<ImageStyle>;
+    newStyle?: StyleProp<ImageStyle>;
 };
 
 export default function PromotionCard(props: Props){

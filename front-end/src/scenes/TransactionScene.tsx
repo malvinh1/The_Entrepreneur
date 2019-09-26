@@ -47,13 +47,44 @@ class OngoingScreen extends React.Component {
   }
   
 class HistoryScreen extends React.Component {
-    render() {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>Settings!</Text>
-        </View>
-      );
-    }
+  render() {
+    return (
+      <ScrollView>
+        <TransactionCard 
+        key="1"
+        dateTransaction="12/2/2019"
+        mode1="event"
+        mode2="black"
+        status="Hello"
+        transactionTitle="Hello Title"
+        ></TransactionCard>
+        <TransactionCard 
+        key="1"
+        dateTransaction="12/2/2019"
+        mode1="event"
+        mode2="black"
+        status="Hello"
+        transactionTitle="Hello Title"
+        ></TransactionCard>
+        <TransactionCard 
+        key="1"
+        dateTransaction="12/2/2019"
+        mode1="event"
+        mode2="black"
+        status="Hello"
+        transactionTitle="Hello Title"
+        ></TransactionCard>
+        <TransactionCard 
+        key="1"
+        dateTransaction="12/2/2019"
+        mode1="event"
+        mode2="black"
+        status="Hello"
+        transactionTitle="Hello Title"
+        ></TransactionCard>
+      </ScrollView>
+    );
+  }
 }
   
 const TransactionTab = createMaterialTopTabNavigator({

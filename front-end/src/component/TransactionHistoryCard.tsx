@@ -10,7 +10,7 @@ type Props = {
   mode1: 'membership' | 'event';
 };
 
-export default function HistoryCard(prop: Props) {
+export default function TransactionHistoryCard(prop: Props) {
   let { transactionTitle, dateTransaction, mode1 } = prop;
 
   return (

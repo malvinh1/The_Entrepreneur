@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Text from '../core-ui/Text';
 import {View, StyleSheet} from 'react-native';
 import { WHITE } from '../constants/color';
@@ -6,16 +6,18 @@ import TextInput from '../core-ui/textInput';
 import Button from '../core-ui/Button';
 import { screenWidth } from '../constants/dimens';
 import { VerticalSpacer3 } from '../core-ui/Spacer';
+import { AuthModel } from '../model/Auth';
 
 type Props = {
+    data:AuthModel
     signInAction: ()=>void;
     forgotPasswordAction: ()=>void;
     mode: 'singin'|'signup';
-  };
+};
 
 export default function AuthCard(props: Props){
 
-    let { mode, signInAction, forgotPasswordAction} = props;
+    let { mode, signInAction, forgotPasswordAction, data} = props;
 
     const styles=StyleSheet.create({
         outer:{
@@ -45,9 +47,16 @@ export default function AuthCard(props: Props){
                 mode == 'singin' ? <Text type="headline" children="Sign In"></Text>:
                 <Text type="headline" children="Sign Up"></Text>
             }
-            <TextInput label="Email" placeholder="Type your email" containerStyle={styles.form} labelStyle={styles.label} onChangeText={()=>{}}/>
+            <TextInput label="Email" placeholder="Type your email"
+            containerStyle={styles.form} labelStyle={styles.label}
+            onChangeText={(text)=>{
+                data.username=text
+                data.email = text
+                }}/>
             <VerticalSpacer3/>
-            <TextInput label="Password" placeholder="Type your password" isEncrypt={true} containerStyle={styles.form} labelStyle={styles.label} onChangeText={()=>{}}/>
+            <TextInput label="Password" placeholder="Type your password" isEncrypt={true}
+            containerStyle={styles.form} labelStyle={styles.label}
+            onChangeText={(text)=>{data.password = text}}/>
             <VerticalSpacer3/>
             {
                 mode == 'signup' ?  <TextInput label="Repeat Password" isEncrypt={true} placeholder="Type your password again" containerStyle={styles.form} labelStyle={styles.label} onChangeText={()=>{}}/> :

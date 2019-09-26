@@ -1,24 +1,34 @@
-class User{
-    public success: boolean
-    public id: number
-    public email : string
-    public user_role : 'User' | 'Admin'
-    public first_name : string
-    public last_name : string
-    public avatar : string | null
-    public membership : 'Basic' | 'Premium'
-    public gender : 'Male' | 'female' | 'Other'
-    public token : string
+export class UserModel{
+    id: number
+    email: string
+    user_role: 'User' | 'Admin'
+    first_name: string
+    last_name: string
+    avatar: string | null
+    membership: 'Basic' | 'Premium'
+    gender: 'Male' | 'female' | 'Other'
+    token: string
     constructor(){
-        this.success = true
-        this.id = 1
-        this.email = 'tes@tes.co'
+        this.id=0
+        this.email=''
         this.user_role="User"
-        this.first_name="123"
-        this.last_name="456"
-        this.avatar= null
+        this.first_name=''
+        this.last_name=''
+        this.avatar=''
         this.membership='Basic'
-        this.gender="Male"
-        this.token="123489542754892"
+        this.gender='Male'
+        this.token=''
+    }
+    
+    set(response:any){
+        this.id=response.data.id
+        this.email=response.data.email
+        this.user_role=response.data.user_role
+        this.first_name=response.data.first_name
+        this.last_name=response.data.last_name
+        this.avatar=response.data.avatar
+        this.membership=response.data.membership
+        this.gender=response.data.gender
+        this.token=response.id
     }
 }

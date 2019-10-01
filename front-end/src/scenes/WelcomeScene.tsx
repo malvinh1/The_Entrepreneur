@@ -3,17 +3,21 @@ import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
 import WelcomeCard from '../component/Welcomecard';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import {NavigationScreenProps} from 'react-navigation';
+import { NavigationScreenProps } from 'react-navigation';
 import { k16 } from '../constants/dimens';
 import Text from 'react-native-elements'
 
-type Props = NavigationScreenProps
+type Props = NavigationScreenProps;
 type State = {};
 
 export default class WelcomeScene extends Component<Props, State> {
-  loginAction = ()=>{this.props.navigation.navigate('SignIn')}
-  signUpAction = ()=>{this.props.navigation.navigate('SignUp')}
-  googleSignAction = ()=>{}
+  loginAction = () => {
+    this.props.navigation.navigate('SignIn');
+  };
+  signUpAction = () => {
+    this.props.navigation.navigate('SignUp');
+  };
+  googleSignAction = () => {};
 
   render() {
     return (
@@ -22,8 +26,13 @@ export default class WelcomeScene extends Component<Props, State> {
           style={styles.container}
           colors={['#454545', '#000000']}
           start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}>
-            <WelcomeCard loginGoogleAction={this.googleSignAction} signUpAction={this.signUpAction} loginAction={this.loginAction}></WelcomeCard>
+          end={{ x: 0, y: 1 }}
+        >
+          <WelcomeCard
+            loginGoogleAction={this.googleSignAction}
+            signUpAction={this.signUpAction}
+            loginAction={this.loginAction}
+          ></WelcomeCard>
         </LinearGradient>
         
       </View>
@@ -36,10 +45,10 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
   },
-  container:{
+  container: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: k16
+    paddingBottom: k16,
   },
 });

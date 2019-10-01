@@ -15,7 +15,8 @@ type Props = {
     mode: 'singin'|'signup';
 };
 
-export default function AuthCard(props: Props){
+export default function AuthCard(props: Props) {
+  let { mode, signInAction, forgotPasswordAction } = props;
 
     let { mode, signInAction, forgotPasswordAction, authModel} = props;
 

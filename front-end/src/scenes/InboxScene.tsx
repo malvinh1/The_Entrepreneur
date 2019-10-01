@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, Text } from 'react-native';
 import { navigationOption } from '../component/NavBar';
 
 

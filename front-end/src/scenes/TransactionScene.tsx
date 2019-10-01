@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, } from 'react-native';
+import { StyleSheet, View, } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer, ScrollView } from 'react-navigation';
 import { headerBarColor, WHITE } from '../constants/color';
 import Icon from '../core-ui/Icon';

@@ -1,2 +1,4 @@
-node_modules/
-back-end/.DS_Store
+
+front-end/src/.DS_Store
+
+front-end/src/component/.DS_Store

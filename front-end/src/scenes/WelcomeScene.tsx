@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
+import { StyleSheet, View,} from 'react-native';
 import WelcomeCard from '../component/Welcomecard';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { NavigationScreenProps } from 'react-navigation';
 import { k16 } from '../constants/dimens';
-import Text from 'react-native-elements'
 
 type Props = NavigationScreenProps;
 type State = {};

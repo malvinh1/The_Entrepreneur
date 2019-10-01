@@ -4,7 +4,7 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Text from '../core-ui/Text';
 import Image from '../core-ui/Image';
 import { k8, k16 } from '../constants/dimens';
-import { VerticalSpacer1, VerticalSpacer2 } from '../core-ui/Spacer';
+import { VerticalSpacer1 } from '../core-ui/Spacer';
 
 type Props = {
   key: Key;

@@ -11,7 +11,6 @@ import { k16 } from '../constants/dimens';
 import {NavigationScreenProps} from 'react-navigation';
 
 import PromotionCard from '../component/PromotionCard';
-import HistoryCard from '../component/TransactionHistoryCard';
 
 type Props = NavigationScreenProps;
 

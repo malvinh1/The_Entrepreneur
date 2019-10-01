@@ -1,7 +1,7 @@
 import React, { ReactNode, Key } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import Texts from '../core-ui/Text';
+import Text from '../core-ui/Text';
 import Icon from '../core-ui/Icon';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 export default function TransactionHistoryCard(prop: Props) {
   let { transactionTitle, dateTransaction, mode1 } = prop;
-
+  
   return (
     <View>
       <View style={styles.containerStyle}>
@@ -23,9 +23,9 @@ export default function TransactionHistoryCard(prop: Props) {
           <Icon name="eventlogo"></Icon>
         )}
         <View style={styles.segmentContent}>
-          <Texts type="body">{transactionTitle}</Texts>
+          <Text type="body">{transactionTitle}</Text>
           <View style={styles.spacing}></View>
-          <Texts type="display1">{dateTransaction}</Texts>
+          <Text type="display1">{dateTransaction}</Text>
         </View>
       </View>
       <View style={styles.line}></View>

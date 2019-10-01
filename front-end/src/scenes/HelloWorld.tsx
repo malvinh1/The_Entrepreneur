@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
-import { navigationOption } from '../component/NavBar';
 import { k16 } from '../constants/dimens';
 import Icon from '../core-ui/Icon';
 import { headerBarColor } from '../constants/color';

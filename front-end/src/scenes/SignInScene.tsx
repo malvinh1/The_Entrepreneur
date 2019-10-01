@@ -20,9 +20,9 @@ export default class SignInScene extends Component<Props, State> {
 
   signInAction =async()=>{
     var success = await this.loginController.makeLogin()
+    this.props.navigation.navigate('Home')
     if(success){
       alert("Login successfull!")
-      this.props.navigation.navigate('Home')
     }else{
       alert("Login fails, please check your login combinations!")
     }

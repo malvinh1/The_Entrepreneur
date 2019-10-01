@@ -3,7 +3,7 @@ import { AuthModel } from "../model/Auth";
 
 export default class AuthService{
     doLogin=async (authModel: AuthModel)=>{
-        return await fetch(KAPI_ADDRESS_LOGIN,{
+        return fetch(KAPI_ADDRESS_LOGIN,{
             method:'POST',
             headers: kHeader,
             body: JSON.stringify(authModel),
@@ -13,7 +13,7 @@ export default class AuthService{
             return response;
         })
         .catch((error) => {
-            console.error("error"+error);
+            return {}
         });;
     }
 }

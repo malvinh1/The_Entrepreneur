@@ -4,13 +4,14 @@ import { createMaterialTopTabNavigator, createAppContainer, ScrollView } from 'r
 import { headerBarColor, WHITE } from '../constants/color';
 import Icon from '../core-ui/Icon';
 import TransactionCard from '../component/TransactionCard';
+import TransactionHistoryCard from '../component/TransactionHistoryCard';
 
 class OngoingScreen extends React.Component {
     render() {
       return (
         <ScrollView>
           <TransactionCard 
-          key="1"
+          key={Math.random()}
           dateTransaction="12/2/2019"
           mode1="event"
           mode2="black"
@@ -18,7 +19,7 @@ class OngoingScreen extends React.Component {
           transactionTitle="Hello Title"
           ></TransactionCard>
           <TransactionCard 
-          key="1"
+          key={Math.random()}
           dateTransaction="12/2/2019"
           mode1="event"
           mode2="black"
@@ -26,7 +27,7 @@ class OngoingScreen extends React.Component {
           transactionTitle="Hello Title"
           ></TransactionCard>
           <TransactionCard 
-          key="1"
+          key={Math.random()}
           dateTransaction="12/2/2019"
           mode1="event"
           mode2="black"
@@ -34,7 +35,7 @@ class OngoingScreen extends React.Component {
           transactionTitle="Hello Title"
           ></TransactionCard>
           <TransactionCard 
-          key="1"
+          key={Math.random()}
           dateTransaction="12/2/2019"
           mode1="event"
           mode2="black"
@@ -50,38 +51,30 @@ class HistoryScreen extends React.Component {
   render() {
     return (
       <ScrollView>
-        <TransactionCard 
-        key="1"
-        dateTransaction="12/2/2019"
+        <TransactionHistoryCard 
+        key={Math.random()}
+        transactionTitle="Tes"
+        dateTransaction="09/12/2019"
         mode1="event"
-        mode2="black"
-        status="Hello"
-        transactionTitle="Hello Title"
-        ></TransactionCard>
-        <TransactionCard 
-        key="1"
-        dateTransaction="12/2/2019"
+        ></TransactionHistoryCard>
+        <TransactionHistoryCard 
+        key={Math.random()}
+        transactionTitle="Tes"
+        dateTransaction="09/12/2019"
         mode1="event"
-        mode2="black"
-        status="Hello"
-        transactionTitle="Hello Title"
-        ></TransactionCard>
-        <TransactionCard 
-        key="1"
-        dateTransaction="12/2/2019"
+        ></TransactionHistoryCard>
+        <TransactionHistoryCard 
+        key={Math.random()}
+        transactionTitle="Tes"
+        dateTransaction="09/12/2019"
         mode1="event"
-        mode2="black"
-        status="Hello"
-        transactionTitle="Hello Title"
-        ></TransactionCard>
-        <TransactionCard 
-        key="1"
-        dateTransaction="12/2/2019"
+        ></TransactionHistoryCard>
+        <TransactionHistoryCard 
+        key={Math.random()}
+        transactionTitle="Tes"
+        dateTransaction="09/12/2019"
         mode1="event"
-        mode2="black"
-        status="Hello"
-        transactionTitle="Hello Title"
-        ></TransactionCard>
+        ></TransactionHistoryCard>
       </ScrollView>
     );
   }

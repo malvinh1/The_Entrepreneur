@@ -16,10 +16,8 @@ type Props = {
 };
 
 export default function AuthCard(props: Props) {
-  let { mode, signInAction, forgotPasswordAction } = props;
-
-    let { mode, signInAction, forgotPasswordAction, authModel} = props;
-
+  let { mode, signInAction, forgotPasswordAction, authModel} = props;
+  
     const styles=StyleSheet.create({
         outer:{
             margin: 16,

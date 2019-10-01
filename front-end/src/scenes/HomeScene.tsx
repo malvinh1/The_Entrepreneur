@@ -6,7 +6,7 @@ import EventCard from '../component/EventCard';
 import StatusCard from '../component/StatusCard';
 import TextIcon from '../component/TextIcon';
 import ForumCard from '../component/ForumCard';
-import { VerticalSpacer3 } from '../core-ui/Spacer';
+import { VerticalSpacer3, VerticalSpacer1 } from '../core-ui/Spacer';
 import { k16 } from '../constants/dimens';
 import {NavigationScreenProps} from 'react-navigation';
 
@@ -91,8 +91,8 @@ export default class HomeScene extends Component<Props, State>{
                         <PromotionCard/>
                     </ScrollView>
                     <VerticalSpacer3/>
-                    <Text type="headline" children="Event Terdekat"></Text>
-                    <VerticalSpacer3/>
+                    <Text type="headline">Event Terdekat</Text>
+                    <VerticalSpacer1/>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         {
                             this.example.map((data)=>{

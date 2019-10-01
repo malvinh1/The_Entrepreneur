@@ -1,10 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, Key } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Texts from '../core-ui/Text';
 import Icon from '../core-ui/Icon';
 
 type Props = {
+  key: Key,
   transactionTitle: ReactNode;
   dateTransaction: ReactNode;
   mode1: 'membership' | 'event';

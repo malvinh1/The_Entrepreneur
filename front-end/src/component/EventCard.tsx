@@ -22,7 +22,6 @@ export default function EventCard(prop: Props) {
     view:{
       paddingLeft: k8,
       paddingRight: k8,
-      marginTop: k16,
       marginBottom: k16,
     },
     container:{
@@ -42,11 +41,11 @@ export default function EventCard(prop: Props) {
       ></Image>
       <VerticalSpacer1/>
       <Text type="display2">{eventTitle}</Text>
-      <VerticalSpacer2/>
+      <VerticalSpacer1/>
       <Text type="display1">{title}</Text>
-       <VerticalSpacer2/>
+      <VerticalSpacer1/>
       <Text type="display1">{date}</Text>
-      <VerticalSpacer2/>
+      <VerticalSpacer1/>
       <Text color="yellow">{price}</Text>
     </View>
     </TouchableOpacity>

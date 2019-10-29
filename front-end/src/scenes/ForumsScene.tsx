@@ -6,15 +6,23 @@ import Text from "../core-ui/Text";
 import { ForumSaga } from '../sagas/forumsSaga';
 import { ForumData } from '../model/forum';
 import ForumTitleCard from '../component/ForumTitleCard';
+import { ActivityIndicator, StyleSheet} from 'react-native';
 
 type Props = NavigationScreenProps
+
+const style = StyleSheet.create({
+    loading: {
+        flex: 1,
+        justifyContent: 'center'
+      },
+})
 
 class ForumUmum extends Component {
     props!: Props;
     forumSaga: ForumSaga = new ForumSaga();
     
     state={
-        error: false,
+        error: null,
         data: [],
     }
 
@@ -23,7 +31,7 @@ class ForumUmum extends Component {
     } 
 
     render(){
-        if(this.state.data == null) return <Text>Loading...</Text>
+        if(this.state.error == null) return <ActivityIndicator style={style.loading} size="large" color={headerBarColor} />
         else if(this.state.error == true) return <Text>Error fetching the data...</Text>
         else return (
             <ScrollView>
@@ -51,7 +59,7 @@ class ForumJual extends Component{
     } 
 
     render(){
-        if(this.state.data == []) return <Text>Loading...</Text>
+        if(this.state.error == null) return <ActivityIndicator style={style.loading} size="large" color={headerBarColor} />
         else if(this.state.error == true) return <Text>Error fetching the data...</Text>
         else return (
             <ScrollView>
@@ -79,7 +87,7 @@ class ForumBeli extends Component{
     } 
 
     render(){
-        if(this.state.data == null) return <Text>Loading...</Text>
+        if(this.state.error == null) return <ActivityIndicator style={style.loading} size="large" color={headerBarColor} />
         else if(this.state.error == true) return <Text>Error fetching the data...</Text>
         else return (
             <ScrollView>

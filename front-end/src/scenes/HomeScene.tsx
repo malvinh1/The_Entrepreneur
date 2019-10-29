@@ -20,7 +20,9 @@ type Props = NavigationScreenProps;
 type State = {};
 
 export default class HomeScene extends Component<Props, State>{
-    static navigationOptions= navigationOption("Home");
+
+    static navigationOptions = navigationOption('Home');
+
     private example=[
         {
             'imageURL':'https://facebook.github.io/react/logo-og.png',
@@ -82,7 +84,11 @@ export default class HomeScene extends Component<Props, State>{
                     />
                     <VerticalSpacer3/>
                     <View style={styles.menu}>
-                        <TextIcon name="forum" text="Forum"></TextIcon>
+                        <TextIcon name="forum" text="Forum"
+                            onPress={()=>{
+                                this.props.navigation.navigate('Forums')
+                            }}
+                        ></TextIcon>
                         <TextIcon name="mainEvent" text="Events"></TextIcon>
                         <TextIcon name="course" text="Courses"></TextIcon>
                         <TextIcon name="cart" text="Market"></TextIcon>

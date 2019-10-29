@@ -10,8 +10,9 @@ type Props = NavigationScreenProps
 type State = {}
 
 export default class SignInScene extends Component<Props, State> {
+  
   signInAction = ()=>{
-    this.props.navigation.navigate('Main')
+    this.props.navigation.replace('Main')
   };
   forgotPasswordAction = ()=>{
 

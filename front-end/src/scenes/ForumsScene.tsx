@@ -6,14 +6,15 @@ import Text from "../core-ui/Text";
 import { ForumSaga } from '../sagas/forumsSaga';
 import { ForumData } from '../model/forum';
 import ForumTitleCard from '../component/ForumTitleCard';
-import { ActivityIndicator, StyleSheet} from 'react-native';
+import { ActivityIndicator, StyleSheet, View} from 'react-native';
 
 type Props = NavigationScreenProps
 
 const style = StyleSheet.create({
     loading: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems:'center',
       },
 })
 
@@ -25,14 +26,16 @@ class ForumUmum extends Component {
         error: null,
         data: [],
     }
-
+    
     async componentDidMount(){
         this.setState(await this.forumSaga.doGetUmum())
     } 
-
     render(){
         if(this.state.error == null) return <ActivityIndicator style={style.loading} size="large" color={headerBarColor} />
-        else if(this.state.error == true) return <Text>Error fetching the data...</Text>
+        else if(this.state.error == true) return (
+        <View style={style.loading}>
+            <Text >Error fetching the data...</Text>
+        </View>)
         else return (
             <ScrollView>
                 {this.state.data.map((f: ForumData)=>{
@@ -60,7 +63,10 @@ class ForumJual extends Component{
 
     render(){
         if(this.state.error == null) return <ActivityIndicator style={style.loading} size="large" color={headerBarColor} />
-        else if(this.state.error == true) return <Text>Error fetching the data...</Text>
+        else if(this.state.error == true) return (
+            <View style={style.loading}>
+                <Text >Error fetching the data...</Text>
+            </View>)
         else return (
             <ScrollView>
                 {this.state.data.map((f: ForumData)=>{
@@ -88,7 +94,10 @@ class ForumBeli extends Component{
 
     render(){
         if(this.state.error == null) return <ActivityIndicator style={style.loading} size="large" color={headerBarColor} />
-        else if(this.state.error == true) return <Text>Error fetching the data...</Text>
+        else if(this.state.error == true) return (
+            <View style={style.loading}>
+                <Text >Error fetching the data...</Text>
+            </View>)
         else return (
             <ScrollView>
                 {this.state.data.map((f: ForumData)=>{

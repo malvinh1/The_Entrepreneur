@@ -7,8 +7,11 @@ type Props = NavigationScreenProps;
 
 type State = {};
 
-export default class ForumDetails extends Component<Props, State>{
+export default class ForumDetails extends Component{
+    props!: Props;
+
     render() {
+        console.log(this.props.navigation.getParam('id'))
         return (
            <Text>TEEE</Text>
         )

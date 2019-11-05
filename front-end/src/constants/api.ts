@@ -1,2 +1,2 @@
-export const API_HOST = 'http://192.168.43.232:3000';
+export const API_HOST = 'http://172.16.77.30:3000';
 

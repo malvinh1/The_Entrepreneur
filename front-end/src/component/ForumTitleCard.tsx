@@ -41,7 +41,7 @@ export default function ForumTitleCard(prop: Props) {
   });
 
   return (
-    <TouchableOpacity onPress={onPress} style={styles.containerStyle}>
+    <TouchableOpacity onPress={(onPress)} style={styles.containerStyle}>
       {
         data.image != null ? <Image src={data.image[0]} newImageStyle={styles.pictureStyle}></Image> :
         <Icon name="forum" customStyle={styles.iconStyle}></Icon>

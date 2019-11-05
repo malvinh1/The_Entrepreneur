@@ -40,7 +40,11 @@ class ForumUmum extends Component {
             <ScrollView>
                 {this.state.data.map((f: ForumData)=>{
                     return (
-                        <ForumTitleCard key={f.id.toString()} data={f}></ForumTitleCard>
+                        <ForumTitleCard key={f.id.toString()} onPress={()=>{
+                            this.props.navigation.navigate('ForumDetail',{
+                                id:f.id
+                            })
+                        }} data={f}></ForumTitleCard>
                     );
                 })}
             </ScrollView>
@@ -71,7 +75,11 @@ class ForumJual extends Component{
             <ScrollView>
                 {this.state.data.map((f: ForumData)=>{
                     return (
-                        <ForumTitleCard key={f.id.toString()} data={f}></ForumTitleCard>
+                        <ForumTitleCard
+                        onPress={()=>this.props.navigation.navigate('ForumDetail',{
+                            id: f.id
+                        })}
+                        key={f.id.toString()} data={f}></ForumTitleCard>
                     );
                 })}
             </ScrollView>

@@ -6,13 +6,31 @@ import { screenHeight, k8, k24, k16 } from '../constants/dimens';
 import { ScrollView } from 'react-native-gesture-handler';
 import { BLACK, GRAY5 } from '../constants/color';
 import Text from '../core-ui/Text'
-import { VerticalSpacer2, VerticalSpacer1 } from '../core-ui/Spacer';
+import { VerticalSpacer2, VerticalSpacer1, HorizontalSpacer2, HorizontalSpacer1 } from '../core-ui/Spacer';
+import Icon from '../core-ui/Icon';
 
 type Props = NavigationScreenProps;
-type State = {};
 
 
-export default class EventDetailsScene extends Component<Props, State>{
+export default class EventDetailsScene extends Component<Props>{
+    state={
+        person: 1
+    }    
+
+    addPerson(){
+        this.setState({
+            person: this.state.person+=1
+        })
+    }
+
+    subtractPerson(){
+        if(this.state.person > 1){
+            this.setState({
+                person: this.state.person-=1
+            })
+        }
+    }
+
     render(){
         return (<ScrollView>
             <View>
@@ -34,6 +52,24 @@ export default class EventDetailsScene extends Component<Props, State>{
                 <Text type="subheading" color="yellow">Rp 220.000</Text>
                 <VerticalSpacer1></VerticalSpacer1>
             </View>
+            <View style={styles.content}>
+                <Text type="subheading">Include:</Text>
+                <Text type="body">- Seminar Kit</Text>
+                <Text type="body">- Lunch</Text>
+                <Text type="body">- Networking</Text>
+                <VerticalSpacer2></VerticalSpacer2>
+                <Text type="subheading">Buy Ticket:</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={{flex: 1}} type="body">Regular class</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Icon onPress={this.addPerson} customStyle={{height: k24}} name="add"></Icon>
+                        <HorizontalSpacer1></HorizontalSpacer1>
+                        <Text type="headline">{this.state.person}</Text>
+                        <HorizontalSpacer1></HorizontalSpacer1>
+                        <Icon onPress={this.subtractPerson} customStyle={{height: k24}} name="minus"></Icon>
+                    </View>
+                </View>
+            </View>
         </ScrollView>)
     }
 }
@@ -42,5 +78,8 @@ const styles = StyleSheet.create({
     titleContent:{
         padding: k16,
         backgroundColor: GRAY5,
+    },
+    content:{
+        padding: k16,
     }
 })

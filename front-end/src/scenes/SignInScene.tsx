@@ -10,13 +10,38 @@ type Props = NavigationScreenProps
 type State = {}
 
 export default class SignInScene extends Component<Props, State> {
-  
+  state!: State;
+
+  componentDidMount(){
+    this.setState({
+      'email': String,
+      'password': String,
+    })
+  }
+
   signInAction = ()=>{
+    
     this.props.navigation.replace('Main')
   };
+
+  onChangeValueEmail=(text: String)=>{
+    this.setState({
+      'email': text
+    })
+    console.log(JSON.stringify(this.state))
+  }
+
+  onChangeValuePassword=(text: String)=>{
+    this.setState({
+      'password': text
+    })
+    console.log(JSON.stringify(this.state))
+  }
+
   forgotPasswordAction = ()=>{
 
   };
+
 
   render() {
     return (
@@ -28,7 +53,9 @@ export default class SignInScene extends Component<Props, State> {
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}>
               <AuthCard signInAction={this.signInAction}
-              forgotPasswordAction={this. forgotPasswordAction} mode="singin"></AuthCard>
+              onChangeValueEmail={this.onChangeValueEmail}
+              onChangeValuePassword={this.onChangeValuePassword}
+              forgotPasswordAction={this.forgotPasswordAction} mode="singin"></AuthCard>
             </LinearGradient>
         </KeyboardAvoidingView>
       </View>

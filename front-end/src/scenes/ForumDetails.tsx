@@ -5,14 +5,12 @@ import { ForumSaga } from '../sagas/forumsSaga';
 import { ForumData } from '../model/forum';
 import { any } from 'prop-types';
 import { View,StyleSheet } from 'react-native';
-import { k8, k32 } from '../constants/dimens';
+import { k8} from '../constants/dimens';
 import Icon from '../core-ui/Icon';
 import { VerticalSpacer2 } from '../core-ui/Spacer';
 import CommentCard from '../component/commentCard';
 
 type Props = NavigationScreenProps;
-
-type State = {};
 
 export default class ForumDetails extends Component{
     forumSaga: ForumSaga = new ForumSaga

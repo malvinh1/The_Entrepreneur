@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import AuthCard from '../component/authCard';
 import { LinearGradient } from 'expo-linear-gradient';
 import {KeyboardAvoidingView} from 'react-native';
-import {NavigationScreenProps} from 'react-navigation';
+import {NavigationScreenProps, StackActions, NavigationActions} from 'react-navigation';
 import { k16 } from '../constants/dimens';
 
 type Props = NavigationScreenProps
@@ -20,8 +20,14 @@ export default class SignInScene extends Component<Props, State> {
   }
 
   signInAction = ()=>{
-    
-    this.props.navigation.replace('Main')
+    const successSignin = StackActions.reset({
+      index: 0, 
+      key: null,
+      actions: [
+           NavigationActions.navigate({ routeName: 'Main' })
+      ],
+    });
+    this.props.navigation.dispatch(successSignin);
   };
 
   onChangeValueEmail=(text: String)=>{

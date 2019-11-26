@@ -20,7 +20,6 @@ type Props = NavigationScreenProps;
 type State = {};
 
 export default class HomeScene extends Component<Props, State>{
-
     static navigationOptions = navigationOption('Home');
 
     private example=[
@@ -106,6 +105,9 @@ export default class HomeScene extends Component<Props, State>{
                             this.example.map((data)=>{
                                 return (
                                     <EventCard 
+                                    onClick={()=>
+                                        this.props.navigation.navigate("EventDetails")
+                                    }
                                     key={Math.random()}
                                     imageURL={'https://facebook.github.io/react/logo-og.png'}
                                     eventTitle="WORKSHOP"

@@ -30,6 +30,7 @@ class ForumUmum extends Component {
     async componentDidMount(){
         this.setState(await this.forumSaga.doGetUmum())
     } 
+    
     render(){
         if(this.state.error == null) return <ActivityIndicator style={style.loading} size="large" color={headerBarColor} />
         else if(this.state.error == true) return (
@@ -135,8 +136,6 @@ const forums = createMaterialTopTabNavigator({
       backgroundColor: WHITE
     }
   },
-  navigationOptions: navigationOption('Forums')
-
 })
 
 export default createAppContainer(forums);

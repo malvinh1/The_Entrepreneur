@@ -1,4 +1,4 @@
-import { createSwitchNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import MainNavigation from '../../scenes/MainNavigation';
 import WelcomeScene from '../../scenes/WelcomeScene';
@@ -45,16 +45,11 @@ const AppNavigator = createStackNavigator(
     },
     EventDetails:{
       screen: EventDetails,
-       navigationOption: {
-         header: null
-       }
+       navigationOption: navigationOption('Event Details')
     }
   },
   {
-    initialRouteName: 'EventDetails',
-    navigationOptions:{
-      header: null,
-    },
+    initialRouteName: 'Welcome',
   },
 );
 

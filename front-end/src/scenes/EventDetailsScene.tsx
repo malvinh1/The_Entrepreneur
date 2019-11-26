@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
-import { NavigationScreenProps, NavigationActions, StackActions } from 'react-navigation';
 import { View, StyleSheet} from 'react-native';
 import Slideshow from 'react-native-image-slider-show';
 import { screenHeight, k8, k24, k16 } from '../constants/dimens';
 import { ScrollView } from 'react-native-gesture-handler';
-import { BLACK, GRAY5 } from '../constants/color';
+import { GRAY5 } from '../constants/color';
 import Text from '../core-ui/Text'
-import { VerticalSpacer2, VerticalSpacer1, HorizontalSpacer2, HorizontalSpacer1 } from '../core-ui/Spacer';
+import { VerticalSpacer2, VerticalSpacer1, HorizontalSpacer1 } from '../core-ui/Spacer';
 import Icon from '../core-ui/Icon';
+import Button from '../core-ui/Button';
+import { navigationOption } from '../component/NavBar';
 
-type Props = NavigationScreenProps;
-
-
-export default class EventDetailsScene extends Component<Props>{
-    state={
+export default class EventDetailsScene extends Component{
+    static navigationOptions = navigationOption('Forum Details')
+    state = {
         person: 1
-    }    
+    };
 
-    addPerson(){
+    addPerson=()=>{
         this.setState({
             person: this.state.person+=1
         })
     }
 
-    subtractPerson(){
+    subtractPerson=()=>{
         if(this.state.person > 1){
             this.setState({
                 person: this.state.person-=1
@@ -70,6 +69,7 @@ export default class EventDetailsScene extends Component<Props>{
                     </View>
                 </View>
             </View>
+            <Button buttonType="yellow" onPress={()=>{}}text="Reserve Now"></Button>
         </ScrollView>)
     }
 }

@@ -24,7 +24,7 @@
     "pg": "^7.12.1",
     "sjcl": "^1.0.8",
     "tslint": "^5.17.0",
-    "typescript": "^3.6.2",	
+    "typescript": "^3.6.2",
     "validator": "^11.1.0"
   },
   "devDependencies": {

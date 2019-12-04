@@ -3,7 +3,7 @@ import { View, StyleSheet} from 'react-native';
 import Slideshow from 'react-native-image-slider-show';
 import { screenHeight, k8, k24, k16 } from '../constants/dimens';
 import { ScrollView } from 'react-native-gesture-handler';
-import { GRAY5 } from '../constants/color';
+import { GRAY5, headerBarColor } from '../constants/color';
 import Text from '../core-ui/Text'
 import { VerticalSpacer2, VerticalSpacer1, HorizontalSpacer1 } from '../core-ui/Spacer';
 import Icon from '../core-ui/Icon';
@@ -11,7 +11,22 @@ import Button from '../core-ui/Button';
 import { navigationOption } from '../component/NavBar';
 
 export default class EventDetailsScene extends Component{
-    static navigationOptions = navigationOption('Forum Details')
+    static navigationOptions = {
+        title: "Forum Details",
+        headerStyle: {
+            backgroundColor: headerBarColor,
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerRight:(
+              <View style={{paddingRight: 16}}>
+                  <Icon name="qr"/>
+              </View>
+          )
+    };
+
     state = {
         person: 1
     };

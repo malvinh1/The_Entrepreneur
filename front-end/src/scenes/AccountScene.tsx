@@ -46,8 +46,8 @@ export default class AccountScene extends Component<Props, State>{
                         </View>
                     </View>
                 </View>
+
                 <View style={{padding: k8}}>
-                    <VerticalSpacer2></VerticalSpacer2>
                     <View style={styles.line}></View>
                     <VerticalSpacer1></VerticalSpacer1>
                     <Text type="subheading">Edit Profile</Text>

@@ -25,7 +25,7 @@ export default class HomeScene extends Component<Props, State>{
     private example=[
         {
             'imageURL':'https://facebook.github.io/react/logo-og.png',
-            'eventTitle':"WORKSHOP",
+            'eventTitle':"WORKSHOP", 
             'title':"Jemur Keramik",
             'date':"23 Januari 2019",
             'price':"Rp 220.000",

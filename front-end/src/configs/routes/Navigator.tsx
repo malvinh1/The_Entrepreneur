@@ -49,7 +49,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Welcome',
+    initialRouteName: 'Main',
   },
 );
 

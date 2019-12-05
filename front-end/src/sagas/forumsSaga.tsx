@@ -20,7 +20,7 @@ export class ForumSaga{
     .then((responseJson) => {
       var res: ForumData[] = responseJson.data.umum
        return {
-         error: false,
+         error: !responseJson.success,
          data: res
        }
     })
@@ -42,7 +42,7 @@ export class ForumSaga{
     .then((responseJson) => {
        var res: ForumData[] = responseJson.data.jual
        return {
-         error: false,
+         error: !responseJson.success,
          data: res
        }
     })
@@ -64,7 +64,7 @@ export class ForumSaga{
     .then((responseJson) => {
        var res: ForumData[] = responseJson.data.beli
        return {
-         error: false,
+         error: !responseJson.success,
          data: res
        }
     })

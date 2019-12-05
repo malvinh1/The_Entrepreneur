@@ -1,21 +1,24 @@
-import { TestToken, API_HOST } from "../constants/api";
 
-export class HomeSaga{
+import { API_HOST, TestToken } from '../constants/api';
+import {Event} from '../model/event';
+
+export class EventsSaga{
+  
   kHttpHeader={
     headers:{
       'Content-Type': 'application/json',
-      'Authorization':TestToken
+      'Authorization': TestToken
     },
   }
 
-  doGetEvents=()=>{
-    return fetch(`${API_HOST}/api/page/home`,{
+  getEventDetails=(id)=>{
+    return fetch(`${API_HOST}/api/feature/get-event/${id}`,{
       method: 'GET',
       headers: this.kHttpHeader.headers,
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      var res: Event[] = responseJson.data.events
+      var res: Event = responseJson.data
        return {
          error: !responseJson.success,
          data: res
@@ -29,5 +32,5 @@ export class HomeSaga{
     });
  
   }
-  
+
 }

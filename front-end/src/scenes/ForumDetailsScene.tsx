@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { NavigationScreenProps } from "react-navigation";
 import Text from "../core-ui/Text";
-import { ForumSaga } from '../sagas/forumsSaga';
 import { ForumData } from '../model/forum';
 import { any } from 'prop-types';
 import { View,StyleSheet, ActivityIndicator } from 'react-native';
-import { k8, k24, screenWidth} from '../constants/dimens';
+import { k8, screenWidth} from '../constants/dimens';
 import Image from '../core-ui/Image';
 import { VerticalSpacer2, VerticalSpacer1 } from '../core-ui/Spacer';
 import CommentCard from '../component/commentCard';
@@ -13,11 +12,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Icon from '../core-ui/Icon';
 import { GRAY, headerBarColor } from '../constants/color';
 import {month_names} from '../constants/data';
+import { ForumDetailsSaga } from '../sagas/forumDetailsSaga';
 
 type Props = NavigationScreenProps;
 
 export default class ForumDetails extends Component{
-    forumSaga: ForumSaga = new ForumSaga
+    forumSaga: ForumDetailsSaga = new ForumDetailsSaga
     props!: Props;
     state={
         error: any,
@@ -65,7 +65,7 @@ export default class ForumDetails extends Component{
                     <View style={styles.borderBottom}></View>
                     <View style={styles.container}>
                         <Text type="headline" style={{
-                            paddingBottom: 8,
+                            paddingBottom: k8,
                         }}>Komen Terbaru</Text>
                         <CommentCard></CommentCard>
                         <CommentCard></CommentCard>

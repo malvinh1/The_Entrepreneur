@@ -4,15 +4,33 @@ import { navigationOption } from '../component/NavBar';
 import { k8 } from '../constants/dimens';
 import { Avatar } from 'react-native-elements';
 import Text from '../core-ui/Text';
-import { HorizontalSpacer1, HorizontalSpacer3, VerticalSpacer1, HorizontalSpacer2, VerticalSpacer2 } from '../core-ui/Spacer';
+import { HorizontalSpacer1, HorizontalSpacer3, VerticalSpacer1} from '../core-ui/Spacer';
 import { NavigationScreenProps, NavigationActions, StackActions } from 'react-navigation';
+import {AccountSaga} from '../sagas/accountSaga'
+import {User} from '../model/user'
+import { any } from 'prop-types';
 
 type Props = NavigationScreenProps;
 type State = {};
 
 export default class AccountScene extends Component<Props, State>{
     static navigationOptions= navigationOption("Account");
+    accountSaga: AccountSaga = new AccountSaga
+
     props!: Props;
+    
+    state={
+        error: null,
+        data: any,
+        user: any
+    }
+
+    componentWillMount=async ()=>{
+        this.setState(
+            await this.accountSaga.doGetHomeData()
+        )
+    }
+
     onLogout=()=>{
         const resetAction = StackActions.reset({
             index: 0, 
@@ -25,13 +43,15 @@ export default class AccountScene extends Component<Props, State>{
     }
       
     render() {
+        var data: User = this.state.user
+
         return (
             <View style={styles.view}>
                 <View style={styles.avatar}>
-                    <Avatar containerStyle={styles.avatar_picture} rounded size="large" ></Avatar>
+                    <Avatar containerStyle={styles.avatar_picture} title={data.full_name} rounded size="large" ></Avatar>
                     <HorizontalSpacer1></HorizontalSpacer1>
                     <View style={{flexDirection: "column"}}>
-                        <Text type="headline">Lia Eden</Text>
+                        <Text type="headline">{data.full_name}</Text>
                         <VerticalSpacer1></VerticalSpacer1>
                         <View style={{flexDirection: "row", alignContent:"space-between"}}>
                             <View style={{flexDirection: "column"}}>
@@ -41,7 +61,7 @@ export default class AccountScene extends Component<Props, State>{
                             <HorizontalSpacer3></HorizontalSpacer3>
                             <View style={{flexDirection: "column"}}>
                                 <Text type="body" color="gray4">Membership</Text>
-                                <Text type="body" color="yellow">Premium</Text>
+                                 <Text type="body" color="yellow">{data.membership}</Text>
                             </View>
                         </View>
                     </View>

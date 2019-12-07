@@ -41,6 +41,22 @@ export default class EventDetailsScene extends Component<Props>{
         data: null,
     };
 
+    orderTicket=async ()=>{
+        var data: Event = this.state.data
+        var res = await this.eventSaga.orderTicket(
+            data.id,
+            3,
+            this.state.person,
+            this.state.person*data.price
+        )
+        if(!res.error){
+            alert("Order success!")
+            this.componentWillMount()
+        }else{
+            alert("Order fails, please try again!")
+        }
+    }
+
     addPerson=()=>{
         var data: Event = this.state.data
         if(this.state.person < data.available_seat)
@@ -109,7 +125,7 @@ export default class EventDetailsScene extends Component<Props>{
                             </View>
                         </View>
                     </View>
-                    <Button buttonType="yellow" onPress={()=>{}}text="Reserve Now"></Button>
+                    <Button buttonType="yellow" onPress={this.orderTicket}text="Reserve Now"></Button>
                 </ScrollView>)
             }
         }else{

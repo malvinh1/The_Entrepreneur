@@ -30,7 +30,39 @@ export class EventsSaga{
         errorDetail: error
       }
     });
- 
+  }
+
+  orderTicket=(
+    id_event,
+    id_user,
+    qty,
+    total
+  )=>{
+    return fetch(`${API_HOST}/api/feature/new-ticket`,{
+      method: 'POST',
+      headers: this.kHttpHeader.headers,
+      body: JSON.stringify({
+        id_event: id_event,
+        id_user: id_user,
+        type: 'Regular',
+        qty: qty,
+        total: total,
+      })
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      var res: Event = responseJson.data
+       return {
+         error: !responseJson.success,
+         data: res
+       }
+    })
+    .catch((error) => {
+      return {
+        error: true,
+        errorDetail: error
+      }
+    });
   }
 
 }

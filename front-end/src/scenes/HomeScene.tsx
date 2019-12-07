@@ -7,7 +7,6 @@ import Text from '../core-ui/Text';
 import EventCard from '../component/EventCard';
 import StatusCard from '../component/StatusCard';
 import TextIcon from '../component/TextIcon';
-import ForumCard from '../component/ForumCard';
 import { VerticalSpacer3, VerticalSpacer1 } from '../core-ui/Spacer';
 import { k16 } from '../constants/dimens';
 import {NavigationScreenProps} from 'react-navigation';
@@ -17,6 +16,7 @@ import {Event} from '../model/event'
 import PromotionCard from '../component/PromotionCard';
 import { HomeSaga } from '../sagas/homeSaga';
 import { headerBarColor } from '../constants/color';
+import { any } from 'prop-types';
 
 type Props = NavigationScreenProps;
 
@@ -28,11 +28,12 @@ export default class HomeScene extends Component<Props>{
     state={
         error: false,
         data: [],
+        user: any
     }
 
     componentWillMount=async ()=>{
         this.setState(
-            await this.homeSaga.doGetEvents()
+            await this.homeSaga.doGetHomeData()
         )
     }
 
@@ -54,6 +55,7 @@ export default class HomeScene extends Component<Props>{
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContainer}>
                     <StatusCard 
+                        user={this.state.user}
                         levelAction={()=>{
                       
                         }}

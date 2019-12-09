@@ -1,17 +1,30 @@
 import { API_HOST, TestToken } from '../constants/api';
 import { ForumData } from '../model/forum';
-
+import { SessionSaga } from './sessionSaga';
 
 export class ForumSaga{
-  
-  kHttpHeader={
+  private sessionSaga: SessionSaga = new SessionSaga
+
+  private kHttpHeader={
     headers:{
       'Content-Type': 'application/json',
       'Authorization': TestToken
     },
   }
 
+  private async updateHttpHeader(){
+    var token = await this.sessionSaga.getSessionToken() || ''
+    this.kHttpHeader={
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+    }
+  }
+
+
   doGetUmum=()=>{
+    this.updateHttpHeader()
     return fetch(`${API_HOST}/api/feature/get-forums`,{
       method: 'GET',
       headers: this.kHttpHeader.headers,
@@ -34,6 +47,7 @@ export class ForumSaga{
   }
 
   doGetJual=()=>{
+    this.updateHttpHeader()
     return fetch(`${API_HOST}/api/feature/get-forums`,{
       method: 'GET',
       headers: this.kHttpHeader.headers,
@@ -56,6 +70,7 @@ export class ForumSaga{
   }
 
   doGetBeli=()=>{
+    this.updateHttpHeader()
     return fetch(`${API_HOST}/api/feature/get-forums`,{
       method: 'GET',
       headers: this.kHttpHeader.headers,
@@ -76,25 +91,4 @@ export class ForumSaga{
     });
  
   }
-
-  doGetForumDetails=(id: String)=>{
-    return fetch(`${API_HOST}/api/feature/get-forum/${id}`,{
-      method: 'GET',
-      headers: this.kHttpHeader.headers,
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-       return {
-         error: false,
-         data: responseJson.data
-       }
-    })
-    .catch((error) => {
-      return {
-        error: true,
-        errorDetail: error
-      }
-    });
-  }
-
 }

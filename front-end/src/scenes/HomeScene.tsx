@@ -17,13 +17,16 @@ import PromotionCard from '../component/PromotionCard';
 import { HomeSaga } from '../sagas/homeSaga';
 import { headerBarColor } from '../constants/color';
 import { any } from 'prop-types';
+import { SessionSaga } from '../sagas/sessionSaga';
 
 type Props = NavigationScreenProps;
 
 export default class HomeScene extends Component<Props>{
     static navigationOptions = navigationOption('Home');
 
-    homeSaga: HomeSaga = new HomeSaga();
+    sessionSaga: SessionSaga = new SessionSaga
+
+    homeSaga: HomeSaga = new HomeSaga
 
     state={
         error: false,
@@ -36,18 +39,6 @@ export default class HomeScene extends Component<Props>{
             await this.homeSaga.doGetHomeData()
         )
     }
-
-    private example=[
-        {
-            'imageURL':'https://facebook.github.io/react/logo-og.png',
-            'eventTitle':"WORKSHOP", 
-            'title':"Jemur Keramik",
-            'date':"23 Januari 2019",
-            'price':"Rp 220.000",
-            'key':0,
-        },
-    ]
-    
     render() {
         return (
             <SafeAreaView style={styles.view}>

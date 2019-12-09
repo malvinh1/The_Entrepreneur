@@ -3,16 +3,16 @@ import { NavigationScreenProps } from "react-navigation";
 import Text from "../core-ui/Text";
 import { ForumData } from '../model/forum';
 import { any } from 'prop-types';
-import { View,StyleSheet, ActivityIndicator } from 'react-native';
-import { k8, screenWidth} from '../constants/dimens';
+import { View,StyleSheet, ActivityIndicator, TextInput } from 'react-native';
+import { k8, screenWidth, screenHeight} from '../constants/dimens';
 import Image from '../core-ui/Image';
 import { VerticalSpacer2, VerticalSpacer1 } from '../core-ui/Spacer';
 import CommentCard from '../component/commentCard';
 import { ScrollView } from 'react-native-gesture-handler';
-import Icon from '../core-ui/Icon';
 import { GRAY, headerBarColor } from '../constants/color';
 import {month_names} from '../constants/data';
 import { ForumDetailsSaga } from '../sagas/forumDetailsSaga';
+import Icon from '../core-ui/Icon';
 
 type Props = NavigationScreenProps;
 
@@ -41,7 +41,8 @@ export default class ForumDetails extends Component{
             var forum: ForumData = this.state.data;
             var cDate = new Date(forum.cdate)
             return (
-                <ScrollView style={styles.container}>
+                <View style={{flexDirection: "column"}}>
+                <ScrollView style={styles.forumContainer}>
                     <Text type="headline" >{forum.forum_name}</Text>
                     <Text type="body" >{forum.description}</Text>
                     <Text type="body" color="gray3">{cDate.getDate()+' '+month_names[cDate.getMonth()]+' '+cDate.getFullYear()}</Text>
@@ -63,7 +64,7 @@ export default class ForumDetails extends Component{
                     </View>
                     <VerticalSpacer2></VerticalSpacer2>
                     <View style={styles.borderBottom}></View>
-                    <View style={styles.container}>
+                    <View style={{padding: 8}}>
                         <Text type="headline" style={{
                             paddingBottom: k8,
                         }}>Komen Terbaru</Text>
@@ -73,14 +74,31 @@ export default class ForumDetails extends Component{
                         <CommentCard></CommentCard>
                     </View>
                 </ScrollView>
+                <View style={styles.chatBox}>
+                    <TextInput
+                        multiline
+                        numberOfLines={4}
+                        placeholder="Type a comment"
+                        style={[{ flex: 3, maxHeight: 40,},styles.borderBottom]}
+                    />
+                    <Icon name="md-send"></Icon>
+                </View>
+            </View>
             )
         }
     }
 }
 
 const styles = StyleSheet.create({
-    container:{
-        padding: k8, 
+    forumContainer:{
+        padding: 8,
+        height: screenHeight*4/5
+    },
+    chatBox:{
+        padding: 8,
+        flexDirection: "row",
+        alignItems: "center",
+        alignContent: "center"
     },
     borderBottom:{
         marginTop: k8,

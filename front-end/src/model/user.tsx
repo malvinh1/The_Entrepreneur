@@ -6,4 +6,5 @@ export interface User{
     "avatar": string | null,
     "membership": 'Basic' | 'Premium',
     "gender": 'Male' | 'female' | 'Other',
+    "token": string
 }

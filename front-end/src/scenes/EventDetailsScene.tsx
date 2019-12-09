@@ -11,7 +11,6 @@ import Button from '../core-ui/Button';
 import { NavigationScreenProps } from 'react-navigation';
 import { EventsSaga } from '../sagas/eventsSaga';
 import {Event} from '../model/event';
-import { any } from 'prop-types';
 
 type Props = NavigationScreenProps
 

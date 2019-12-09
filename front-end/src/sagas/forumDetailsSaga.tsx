@@ -1,14 +1,28 @@
 import { API_HOST, TestToken } from '../constants/api';
+import { SessionSaga } from './sessionSaga';
 
 export class ForumDetailsSaga{
-  kHttpHeader={
+  private sessionSaga: SessionSaga = new SessionSaga
+
+  private kHttpHeader={
     headers:{
       'Content-Type': 'application/json',
       'Authorization': TestToken
     },
   }
 
+  private async updateHttpHeader(){
+    var token = await this.sessionSaga.getSessionToken() || ''
+    this.kHttpHeader={
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+    }
+  }
+
   doGetForumDetails=(id: String)=>{
+    this.updateHttpHeader()
     return fetch(`${API_HOST}/api/feature/get-forum/${id}`,{
       method: 'GET',
       headers: this.kHttpHeader.headers,

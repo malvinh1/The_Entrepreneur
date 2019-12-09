@@ -1,19 +1,34 @@
-import { TestToken, API_HOST } from "../constants/api";
+import { API_HOST, TestToken } from "../constants/api";
 import {User} from "../model/user";
+import { SessionSaga } from "./sessionSaga";
 
 export class HomeSaga{
-  kHttpHeader={
+  private sessionSaga: SessionSaga = new SessionSaga
+
+  private kHttpHeader={
     headers:{
       'Content-Type': 'application/json',
-      'Authorization':TestToken
+      'Authorization': TestToken
     },
   }
 
-  doGetHomeData=()=>{
+  private async updateHttpHeader(){
+    var token = await this.sessionSaga.getSessionToken() || ''
+    this.kHttpHeader={
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+    }
+  }
+
+  doGetHomeData=async ()=>{
+    this.updateHttpHeader()
     return fetch(`${API_HOST}/api/page/home`,{
       method: 'GET',
       headers: this.kHttpHeader.headers,
     })
+
     .then((response) => response.json())
     .then((responseJson) => {
       var res: Event[] = responseJson.data.events

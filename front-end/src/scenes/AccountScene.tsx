@@ -9,6 +9,8 @@ import { NavigationScreenProps, NavigationActions, StackActions } from 'react-na
 import {AccountSaga} from '../sagas/accountSaga'
 import {User} from '../model/user'
 import { any } from 'prop-types';
+import { SessionSaga } from '../sagas/sessionSaga';
+import Toast from 'react-native-root-toast';
 
 type Props = NavigationScreenProps;
 type State = {};
@@ -16,6 +18,7 @@ type State = {};
 export default class AccountScene extends Component<Props, State>{
     static navigationOptions= navigationOption("Account");
     accountSaga: AccountSaga = new AccountSaga
+    sessionSaga: SessionSaga = new SessionSaga
 
     props!: Props;
     
@@ -31,15 +34,25 @@ export default class AccountScene extends Component<Props, State>{
         )
     }
 
-    onLogout=()=>{
-        const resetAction = StackActions.reset({
-            index: 0, 
-            key: null,
-            actions: [
-                 NavigationActions.navigate({ routeName: 'Welcome' })
-            ],
-       });
-       this.props.navigation.dispatch(resetAction);
+    onLogout=async ()=>{
+        if(await this.sessionSaga.removeSession()){
+            Toast.show("You have been logged out, see you later!", {
+                backgroundColor: "#0ba257",
+                duration: 1000,
+                opacity: 0.8,
+                position: Toast.positions.BOTTOM
+              })
+              
+            const resetAction = StackActions.reset({
+                index: 0, 
+                key: null,
+                actions: [
+                        NavigationActions.navigate({ routeName: 'Welcome' })
+                ],
+            });
+            this.props.navigation.dispatch(resetAction);
+        }
+
     }
       
     render() {

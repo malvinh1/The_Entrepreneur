@@ -1,6 +1,7 @@
 import { API_HOST, TestToken } from '../constants/api';
 import {Event} from '../model/event';
 import { SessionSaga } from './sessionSaga';
+import { User } from '../model/user';
 
 export class EventsSaga{
   private sessionSaga: SessionSaga = new SessionSaga
@@ -44,19 +45,20 @@ export class EventsSaga{
     });
   }
 
-  orderTicket=(
+  orderTicket=async (
     id_event,
-    id_user,
     qty,
     total
   )=>{
     this.updateHttpHeader()
+    var temp: User = await this.sessionSaga.getSession()
+
     return fetch(`${API_HOST}/api/feature/new-ticket`,{
       method: 'POST',
       headers: this.kHttpHeader.headers,
       body: JSON.stringify({
         id_event: id_event,
-        id_user: id_user,
+        id_user: temp.id,
         type: 'Regular',
         qty: qty,
         total: total,

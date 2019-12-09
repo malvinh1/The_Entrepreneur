@@ -44,7 +44,6 @@ export default class EventDetailsScene extends Component<Props>{
         var data: Event = this.state.data
         var res = await this.eventSaga.orderTicket(
             data.id,
-            3,
             this.state.person,
             this.state.person*data.price
         )

@@ -9,8 +9,8 @@ import { VerticalSpacer2, VerticalSpacer1, HorizontalSpacer1 } from '../core-ui/
 import Icon from '../core-ui/Icon';
 import Button from '../core-ui/Button';
 import { NavigationScreenProps } from 'react-navigation';
-import { EventsSaga } from '../sagas/eventsSaga';
 import {Event} from '../model/event';
+import { EventsSaga } from '../sagas/eventsSaga';
 
 type Props = NavigationScreenProps
 
